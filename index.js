@@ -117,7 +117,7 @@ const EmojiCell = ({ emoji, colSize, ...other }) => (
     }}
     {...other}
   >
-    <Text style={{ color: "#FFFFFF", fontSize: colSize - 12 }}>
+    <Text style={{ color: "#FFFFFF", fontSize: colSize - 24 }}>
       {charFromEmojiObject(emoji)}
     </Text>
   </TouchableOpacity>
@@ -134,6 +134,10 @@ export default class EmojiSelector extends Component {
     colSize: 0,
     width: 0
   };
+  
+  shouldComponentUpdate(nextProps,nextState) {
+    return !(this.state.isReady&&nextState.category===this.state.category);
+  }
 
   //
   //  HANDLER METHODS
